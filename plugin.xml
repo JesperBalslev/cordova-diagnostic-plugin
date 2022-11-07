@@ -305,7 +305,12 @@
         </config-file>
 
         <config-file parent="/*" target="AndroidManifest.xml">
-            <uses-permission android:name="android.permission.BLUETOOTH" />
+            <!-- Request legacy Bluetooth permissions on older devices. -->
+            <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+            <!-- Android 12+ Bluetooth permissions -->
+            <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+            <uses-permission android:name="android.permission.BLUETOOTH_SCAN" android:usesPermissionFlags="neverForLocation" />
         </config-file>
 
         <js-module name="Diagnostic_Bluetooth" src="www/android/diagnostic.bluetooth.js">
